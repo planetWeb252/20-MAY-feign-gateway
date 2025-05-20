@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients // esto hace que nuestra app pueda utilizar feignClients
 public class AccountsMicroApplication {
 
 	public static void main(String[] args) {
