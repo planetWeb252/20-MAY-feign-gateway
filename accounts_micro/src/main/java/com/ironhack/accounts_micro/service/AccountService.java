@@ -1,6 +1,8 @@
 package com.ironhack.accounts_micro.service;
 
+import com.ironhack.accounts_micro.clients.UserFeingClient;
 import com.ironhack.accounts_micro.dto.AccountResponseDTO;
+import com.ironhack.accounts_micro.dto.UserDTO;
 import com.ironhack.accounts_micro.model.Account;
 import com.ironhack.accounts_micro.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private UserFeingClient userFeingClient;
 
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
@@ -26,7 +30,7 @@ public class AccountService {
         if (account.isPresent()) {
             //UserDTO user = restTemplate.getForObject("http://users-micro/api/user/" + account.get().getOwnerId(), UserDTO.class);
             // comentamos el código para usar feignClient
-
+            UserDTO user=userFeingClient.getUserById(account.get().getId());
             // INCLUIR AQUI EL FEIGN PARA HACER EL GET DE USER
             System.out.println("EL USUARIO ES: " + user);
 
